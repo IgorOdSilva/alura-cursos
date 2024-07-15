@@ -1,36 +1,33 @@
 package igorfilmes.modelos;
 
 public class Serie extends Titulo {
-    private int temporada;
-
-    private int episodios;
-
-    private boolean ativo;
-
+    private int temporadas;
+    private boolean ativa;
+    private int episodiosPorTemporada;
     private int minutosPorEpisodio;
 
-    public int getTemporada() {
-        return temporada;
+    public int getTemporadas() {
+        return temporadas;
     }
 
-    public void setTemporada(int temporada) {
-        this.temporada = temporada;
+    public void setTemporadas(int temporadas) {
+        this.temporadas = temporadas;
     }
 
-    public int getEpisodios() {
-        return episodios;
+    public boolean isAtiva() {
+        return ativa;
     }
 
-    public void setEpisodios(int episodios) {
-        this.episodios = episodios;
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
     }
 
-    public boolean isAtivo() {
-        return ativo;
+    public int getEpisodiosPorTemporada() {
+        return episodiosPorTemporada;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setEpisodiosPorTemporada(int episodiosPorTemporada) {
+        this.episodiosPorTemporada = episodiosPorTemporada;
     }
 
     public int getMinutosPorEpisodio() {
@@ -43,6 +40,6 @@ public class Serie extends Titulo {
 
     @Override
     public int getDuracaoEmMinutos() {
-        return temporada * episodios * minutosPorEpisodio;
+        return temporadas * episodiosPorTemporada * minutosPorEpisodio;
     }
 }

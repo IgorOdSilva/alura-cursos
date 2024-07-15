@@ -1,35 +1,67 @@
 import igorfilmes.calculos.CalculadoraDeTempo;
+import igorfilmes.calculos.FiltroRecomendacao;
+import igorfilmes.modelos.Episodio;
 import igorfilmes.modelos.Filme;
 import igorfilmes.modelos.Serie;
+
+import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
         Filme meuFilme = new Filme();
-        meuFilme.setNome("Carros");
-        meuFilme.setAnoDeLancamento(2008);
-        meuFilme.setDuracaoEmMinutos(114);
-        System.out.println("Duração do Filme: " + meuFilme.getDuracaoEmMinutos());
+        meuFilme.setNome("O poderoso chefão");
+        meuFilme.setAnoDeLancamento(1970);
+        meuFilme.setDuracaoEmMinutos(180);
+        System.out.println("Duração do filme: " + meuFilme.getDuracaoEmMinutos());
 
-        meuFilme.exibirFichaTecnica();
-        meuFilme.avalia(10);
-        meuFilme.avalia(5.5);
+        meuFilme.exibeFichaTecnica();
         meuFilme.avalia(8);
-
-        System.out.println(meuFilme.getTotalDeAvaliacoes());
+        meuFilme.avalia(5);
+        meuFilme.avalia(10);
+        System.out.println("Total de avaliações: " + meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
+        //meuFilme.somaDasAvaliacoes = 10;
+        //meuFilme.totalDeAvaliacoes = 1;
+        //System.out.println(meuFilme.pegaMedia());
 
-        Serie sults = new Serie();
-        sults.setNome("Sults");
-        sults.setAnoDeLancamento(2010);
-        sults.exibirFichaTecnica();
-        sults.setTemporada(10);
-        sults.setEpisodios(20);
-        sults.setMinutosPorEpisodio(80);
-        System.out.println("Duração para maratonar: " + sults.getDuracaoEmMinutos());
+        Serie lost = new Serie();
+        lost.setNome("Lost");
+        lost.setAnoDeLancamento(2000);
+        lost.exibeFichaTecnica();
+        lost.setTemporadas(10);
+        lost.setEpisodiosPorTemporada(10);
+        lost.setMinutosPorEpisodio(50);
+        System.out.println("Duração para maratonar Lost: " + lost.getDuracaoEmMinutos());
+
+        Filme outroFilme = new Filme();
+        outroFilme.setNome("Avatar");
+        outroFilme.setAnoDeLancamento(2023);
+        outroFilme.setDuracaoEmMinutos(200);
 
         CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
         calculadora.inclui(meuFilme);
-        calculadora.inclui(sults);
+        calculadora.inclui(outroFilme);
+        calculadora.inclui(lost);
         System.out.println(calculadora.getTempoTotal());
+
+        FiltroRecomendacao filtro = new FiltroRecomendacao();
+        filtro.filtra(meuFilme);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(lost);
+        episodio.setTotalVisualizacoes(300);
+        filtro.filtra(episodio);
+
+        var filmeDoIgor = new Filme();
+        filmeDoIgor.setNome("LOL É BOM");
+        filmeDoIgor.setDuracaoEmMinutos(100);
+        filmeDoIgor.setAnoDeLancamento(2004);
+        filmeDoIgor.avalia(10);
+
+        ArrayList<Filme> listaDeFilmes = new ArrayList<>();
+        listaDeFilmes.add(filmeDoIgor);
+        listaDeFilmes.add(meuFilme);
+        listaDeFilmes.add(outroFilme);
     }
 }
